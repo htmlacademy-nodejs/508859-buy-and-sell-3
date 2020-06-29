@@ -1,6 +1,6 @@
 'use strict';
 
-const {PICTURE_NUM} = require(`./constants`);
+const PICTURE_NUM = 9;
 
 module.exports.getRandomInt = (min, max) => {
   min = Math.ceil(min);
