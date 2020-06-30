@@ -8,13 +8,14 @@ module.exports.getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-module.exports.shuffle = (someArray) => {
-  for (let i = someArray.length - 1; i > 0; i--) {
+module.exports.shuffleElements = (array) => {
+  const copyArray = [...array];
+  for (let i = copyArray.length - 1; i > 0; i--) {
     const randomPosition = Math.floor(Math.random() * i);
-    [someArray[i], someArray[randomPosition]] = [someArray[randomPosition], someArray[i]];
+    [copyArray[i], copyArray[randomPosition]] = [copyArray[randomPosition], copyArray[i]];
   }
 
-  return someArray;
+  return copyArray;
 };
 
 module.exports.getPictureFileName = (pictureId) => `item${pictureId > IMG_ID ? pictureId : `0` + pictureId}.jpg`;

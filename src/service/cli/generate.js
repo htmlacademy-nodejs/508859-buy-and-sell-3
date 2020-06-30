@@ -3,11 +3,10 @@
 const fs = require(`fs`).promises;
 const chalk = require(`chalk`);
 
-const {getRandomInt, shuffle, getPictureFileName} = require(`../../utils`);
-const {ExitCode} = require(`../../constants`);
+const {getRandomInt, shuffleElements, getPictureFileName} = require(`../../utils`);
+const {ExitCode, FILE_NAME} = require(`../../constants`);
 
 const DEFAULT_COUNT = 1;
-const FILE_NAME = `mocks.json`;
 const FILE_SENTENCES_PATH = `./src/data/sentences.txt`;
 const FILE_TITLES_PATH = `./src/data/titles.txt`;
 const FILE_CATEGORIES_PATH = `./src/data/categories.txt`;
@@ -37,8 +36,8 @@ const MAX_COUNT_OFFERS = 1000;
 
 const generateOffers = (count, titles, categories, sentences) => (
   Array(count).fill({}).map(() => ({
-    category: shuffle(categories).slice(0, getRandomInt(1, categories.length - 1)),
-    description: shuffle(sentences).slice(DescriptionCount.MIN, DescriptionCount.MAX).join(` `),
+    category: shuffleElements(categories).slice(0, getRandomInt(1, categories.length - 1)),
+    description: shuffleElements(sentences).slice(DescriptionCount.MIN, DescriptionCount.MAX).join(` `),
     picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
     title: titles[getRandomInt(0, titles.length - 1)],
     type: Object.keys(OfferType)[Math.floor(Math.random() * Object.keys(OfferType).length)],
