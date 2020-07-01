@@ -1,6 +1,6 @@
 'use strict';
 
-const PICTURE_NUM = 9;
+const IMG_ID = 9;
 
 module.exports.getRandomInt = (min, max) => {
   min = Math.ceil(min);
@@ -17,6 +17,6 @@ module.exports.shuffle = (someArray) => {
   return someArray;
 };
 
-module.exports.getPictureFileName = (pictureId) => `item${pictureId > PICTURE_NUM ? pictureId : `0` + pictureId}.jpg`;
+module.exports.getPictureFileName = (pictureId) => `item${pictureId > IMG_ID ? pictureId : `0` + pictureId}.jpg`;
 
 
