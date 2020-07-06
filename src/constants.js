@@ -13,8 +13,11 @@ const HttpCode = {
   UNAUTHORIZED: 401,
 };
 
+const DEFAULT_PORT = 8080;
+
 module.exports = {
   FILE_NAME,
+  DEFAULT_PORT,
   ExitCode,
   HttpCode
 };
