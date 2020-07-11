@@ -4,7 +4,7 @@ const {Router} = require(`express`);
 const mainRouter = new Router();
 
 mainRouter.get(`/`, (req, res) => {
-  res.render(`index`);
+  res.render(`main`);
 });
 
 mainRouter.get(`/register`, (req, res) => {
@@ -16,8 +16,7 @@ mainRouter.get(`/login`, (req, res) => {
 });
 
 mainRouter.get(`/search`, (req, res) => {
-  res.send(`/search`);
-  res.render(`auth/search-result`);
+  res.render(`search-result`);
 });
 
 module.exports = mainRouter;

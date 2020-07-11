@@ -6,6 +6,7 @@ const path = require(`path`);
 const mainRoutes = require(`./routes/main-routes`);
 const myRoutes = require(`./routes/my-routes`);
 const offersRoutes = require(`./routes/offers-routes`);
+const errorRoutes = require(`./routes/error-routes`);
 const {DEFAULT_PORT} = require(`../constants`);
 
 const PUBLIC_DIR = `public`;
@@ -19,6 +20,7 @@ app.set(`view engine`, `pug`);
 app.use(`/`, mainRoutes);
 app.use(`/my`, myRoutes);
 app.use(`/offers`, offersRoutes);
+app.use(`/errors`, errorRoutes);
 
 app.listen(DEFAULT_PORT, () => {
   console.log(`App listening at http://localhost:${DEFAULT_PORT}`);
