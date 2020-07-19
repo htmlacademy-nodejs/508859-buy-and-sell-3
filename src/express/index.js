@@ -20,7 +20,7 @@ app.set(`view engine`, `pug`);
 app.use(`/`, mainRoutes);
 app.use(`/my`, myRoutes);
 app.use(`/offers`, offersRoutes);
-app.use(`/errors`, errorRoutes);
+app.use(`/error`, errorRoutes);
 
 app.listen(DEFAULT_PORT, () => {
   console.log(`App listening at http://localhost:${DEFAULT_PORT}`);

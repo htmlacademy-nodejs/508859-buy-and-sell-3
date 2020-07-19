@@ -5,42 +5,36 @@ block content
     section.search-results
       h1.visually-hidden Результаты поиска
       .search-results__wrapper
-        p.search-results__label
-          | Найдено
-          span.js-results 2 публикации
-        ul.search-results__list
-          li.search-results__item
-            .ticket-card.ticket-card--color05
-              .ticket-card__img
-                img(src='/img/item05.jpg', srcset='/img/item05@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/1') Авто
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/1') Ленд Ровер
-                  p.ticket-card__price
-                    span.js-sum 900 000
-                    |  ₽
-                .ticket-card__desc
-                  p Куплю монстеру зеленую в хорошем зеленом состоянии, буду поливать...
-          li.search-results__item
-            .ticket-card.ticket-card--color16
-              .ticket-card__img
-                img(src='/img/item16.jpg', srcset='/img/item16@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/2') Авто
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/2') Хонда
-                  p.ticket-card__price
-                    span.js-sum 100 000
-                    |  ₽
-                .ticket-card__desc
-                  p Куплю монстеру зеленую в хорошем зеленом состоянии, буду поливать...
+        if searchList.length
+          p.search-results__label
+            | Найдено
+            span.js-results=countSearch
+              |  публикации
+          ul.search-results__list
+            each ticket in searchList
+              li.search-results__item
+                .ticket-card(class=`ticket-card--color` + ticket.id)
+                  .ticket-card__img
+                    img(src=ticket.img.small, srcset=ticket.img.big, alt='Изображение товара')
+                  .ticket-card__info
+                    span.ticket-card__label=ticket.label
+                    .ticket-card__categories
+                      each category in ticket.categories
+                        a(href='/offers/category/1')=category
+                    .ticket-card__header
+                      h3.ticket-card__title
+                        a(href='/offers/1')=ticket.title
+                      p.ticket-card__price
+                        span.js-sum=ticket.price
+                        |  ₽
+                    .ticket-card__desc
+                      p=ticket.description
+        else
+          .search-results__message
+            p
+              | Не найдено
+              br
+              | ни&nbsp;одной публикации
     section.tickets-list
       h2.visually-hidden Самые новые предложения
       .tickets-list__wrapper
@@ -48,133 +42,21 @@ block content
           p.tickets-list__title Самое свежее
           a.tickets-list__link(href='#') Еще 25
         ul
-          li.tickets-list__item
-            .ticket-card.ticket-card--color01
-              .ticket-card__img
-                img(src='/img/item01.jpg', srcset='/img/item01@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label Куплю
-                .ticket-card__categories
-                  a(href='/offers/category/1') Дом
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/1') Монстера
-                  p.ticket-card__price
-                    span.js-sum 1000
-                    |  ₽
-                .ticket-card__desc
-                  p Куплю монстеру зеленую в хорошем зеленом состоянии, буду поливать...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color02
-              .ticket-card__img
-                img(src='/img/item02.jpg', srcset='/img/item02@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/2') Дом
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/2') Мое старое кресло
-                  p.ticket-card__price
-                    span.js-sum 4000
-                    |  ₽
-                .ticket-card__desc
-                  p Продам свое старое кресло, чтобы сидеть и читать книги зимними...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color03
-              .ticket-card__img
-                img(src='/img/item03.jpg', srcset='/img/item03@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/3') ЭЛЕКТРОНИКА
-                  a(href='/offers/category/4') Дом
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/1') Дедушкины часы
-                  p.ticket-card__price
-                    span.js-sum 45 000
-                    |  ₽
-                .ticket-card__desc
-                  p Продаю дедушкины часы в прекрасном состоянии, ходят до...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color04
-              .ticket-card__img
-                img(src='/img/item04.jpg', srcset='/img/item04@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label Куплю
-                .ticket-card__categories
-                  a(href='/offers/category/5') Дом
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/5') Кофеварка
-                  p.ticket-card__price
-                    span.js-sum 2000
-                    |  ₽
-                .ticket-card__desc
-                  p Куплю вот такую итальянскую кофеварку, можно любой фирмы...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color05
-              .ticket-card__img
-                img(src='/img/item05.jpg', srcset='/img/item05@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/3') Авто
-                  a(href='/offers/category/4') ЭЛЕКТРОНИКА
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/6') Ленд Ровер
-                  p.ticket-card__price
-                    span.js-sum 900 000
-                    |  ₽
-                .ticket-card__desc
-                  p Куплю монстеру зеленую в хорошем зеленом состоянии, буду поливать...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color06
-              .ticket-card__img
-                img(src='/img/item06.jpg', srcset='/img/item06@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/2') ЭЛЕКТРОНИКА
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/7') Ableton
-                  p.ticket-card__price
-                    span.js-sum 88 000
-                    |  ₽
-                .ticket-card__desc
-                  p Продам свое старое кресло, чтобы сидеть и читать книги зимними...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color07
-              .ticket-card__img
-                img(src='/img/item07.jpg', srcset='/img/item07@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/6') Спорт и отдых
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/7') Доска
-                  p.ticket-card__price
-                    span.js-sum 55 000
-                    |  ₽
-                .ticket-card__desc
-                  p Продаю дедушкины часы в прекрасном состоянии, ходят до...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color08
-              .ticket-card__img
-                img(src='/img/item08.jpg', srcset='/img/item08@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label Куплю
-                .ticket-card__categories
-                  a(href='/offers/category/2') ЭЛЕКТРОНИКА
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/8') Фотик Canon
-                  p.ticket-card__price
-                    span.js-sum 32 000
-                    |  ₽
-                .ticket-card__desc
-                  p Куплю вот такую итальянскую кофеварку, можно любой фирмы...
+          each ticket in ticketList
+            li.tickets-list__item
+              .ticket-card(class=`ticket-card--color` + ticket.id)
+                .ticket-card__img
+                  img(src=ticket.img.small, srcset=ticket.img.big, alt='Изображение товара')
+                .ticket-card__info
+                  span.ticket-card__label=ticket.label
+                  .ticket-card__categories
+                    each category in ticket.categories
+                      a(href='/offers/category/1')=category
+                  .ticket-card__header
+                    h3.ticket-card__title
+                      a(href='/offers/1')=ticket.title
+                    p.ticket-card__price
+                      span.js-sum=ticket.price
+                      |  ₽
+                  .ticket-card__desc
+                    p=ticket.description

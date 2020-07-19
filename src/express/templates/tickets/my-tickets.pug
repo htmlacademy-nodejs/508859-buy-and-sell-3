@@ -9,78 +9,20 @@ block content
           a.tickets-list__btn.btn.btn--big(href='/offers/add')
             span Новая публикация
         ul
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color06
-              .ticket-card__img
-                img(src='/img/item06.jpg', srcset='/img/item06@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/1') ЭЛЕКТРОНИКА
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/1') Ableton
-                  p.ticket-card__price
-                    span.js-sum 88 000
-                    |  ₽
-              button.ticket-card__del.js-delete(type='button') Удалить
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color10
-              .ticket-card__img
-                img(src='/img/item10.jpg', srcset='/img/item10@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label ПРОДАМ
-                .ticket-card__categories
-                  a(href='/offers/category/2') Дом
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/2') Мое старое кресло
-                  p.ticket-card__price
-                    span.js-sum 4000
-                    |  ₽
-              button.ticket-card__del.js-delete(type='button') Удалить
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color04
-              .ticket-card__img
-                img(src='/img/item04.jpg', srcset='/img/item04@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label Куплю
-                .ticket-card__categories
-                  a(href='/offers/category/3') Дом
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/3') Кофеварка
-                  p.ticket-card__price
-                    span.js-sum 2000
-                    |  ₽
-              button.ticket-card__del.js-delete(type='button') Удалить
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color08
-              .ticket-card__img
-                img(src='/img/item08.jpg', srcset='/img/item08@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label Куплю
-                .ticket-card__categories
-                  a(href='/offers/category/4') ЭЛЕКТРОНИКА
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/4') Фотик Canon
-                  p.ticket-card__price
-                    span.js-sum 32 000
-                    |  ₽
-              button.ticket-card__del.js-delete(type='button') Удалить
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color01
-              .ticket-card__img
-                img(src='/img/item01.jpg', srcset='/img/item01@2x.jpg 2x', alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label Куплю
-                .ticket-card__categories
-                  a(href='/offers/category/5') Дом
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='/offers/5') Монстера
-                  p.ticket-card__price
-                    span.js-sum 1000
-                    |  ₽
-              button.ticket-card__del.js-delete(type='button') Удалить
+          each ticket in ticketList
+            li.tickets-list__item.js-card
+              .ticket-card(class=`ticket-card--color` + ticket.id)
+                .ticket-card__img
+                  img(src=ticket.img.small, srcset=ticket.img.big, alt='Изображение товара')
+                .ticket-card__info
+                  span.ticket-card__label=ticket.label
+                  .ticket-card__categories
+                    each category in ticket.categories
+                      a(href='/offers/category/1')=category
+                  .ticket-card__header
+                    h3.ticket-card__title
+                      a(href='/offers/1')=ticket.title
+                    p.ticket-card__price
+                      span.js-sum=ticket.price
+                      |  ₽
+                button.ticket-card__del.js-delete(type='button') Удалить
