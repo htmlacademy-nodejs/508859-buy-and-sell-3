@@ -1,22 +1,24 @@
 'use strict';
 
 const {Router} = require(`express`);
+const {pageContentMain, pageContentSearch} = require(`../mock`);
+
 const mainRouter = new Router();
 
 mainRouter.get(`/`, (req, res) => {
-  res.send(`/`);
+  res.render(`main`, pageContentMain);
 });
 
 mainRouter.get(`/register`, (req, res) => {
-  res.send(`/register`);
+  res.render(`auth/sign-up`);
 });
 
 mainRouter.get(`/login`, (req, res) => {
-  res.send(`/login`);
+  res.render(`auth/login`);
 });
 
 mainRouter.get(`/search`, (req, res) => {
-  res.send(`/search`);
+  res.render(`search-result`, pageContentSearch);
 });
 
 module.exports = mainRouter;

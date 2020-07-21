@@ -1,0 +1,60 @@
+extends layout.pug
+
+block content
+  main.page-content
+    if ticketList.length
+      include partials/categories.pug
+      section.tickets-list
+        h2.visually-hidden Самые новые предложения
+        .tickets-list__wrapper
+          .tickets-list__header
+            p.tickets-list__title Самое свежее
+          ul
+            each ticket in ticketList
+              li.tickets-list__item
+                .ticket-card(class=(`ticket-card--color` + ticket.id))
+                  .ticket-card__img
+                    img(src=ticket.img.small, srcset=ticket.img.big, alt='Изображение товара')
+                  .ticket-card__info
+                    span.ticket-card__label=ticket.label
+                    .ticket-card__categories
+                      each category in ticket.categories
+                        a(href='#')=category
+                    .ticket-card__header
+                      h3.ticket-card__title
+                        a(href='#')=ticket.title
+                      p.ticket-card__price
+                        span.js-sum=ticket.price
+                        |  ₽
+                    .ticket-card__desc
+                      p=ticket.description
+      section.tickets-list
+        h2.visually-hidden Самые обсуждаемые предложения
+        .tickets-list__wrapper
+          .tickets-list__header
+            p.tickets-list__title Самые обсуждаемые
+          ul
+            each ticket in favoriteList
+              li.tickets-list__item
+                .ticket-card(class=`ticket-card--color` + ticket.id)
+                  .ticket-card__img
+                    img(src=ticket.img.small, srcset=ticket.img.big, alt='Изображение товара')
+                  .ticket-card__info
+                    span.ticket-card__label=ticket.label
+                    .ticket-card__categories
+                      each category in ticket.categories
+                        a(href='#')=category
+                    .ticket-card__header
+                      h3.ticket-card__title
+                        a(href='#')=ticket.title
+                      p.ticket-card__price
+                        span.js-sum=ticket.price
+                        |  ₽
+                    .ticket-card__desc
+                      p=ticket.description
+    else
+      .message
+        .message__text
+          p На сайте еще не опубликовано ни&nbsp;одного объявления.
+        if !isAuth
+          a.message__link.btn.btn--big(href="#") Вход и регистрация
