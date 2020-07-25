@@ -11,18 +11,21 @@ const DEFAULT_PORT = 3000;
 const app = express();
 app.use(express.json());
 
+let fileContent;
+
+fs.access(`./${FILE_NAME}`)
+  .then(async () => {
+    fileContent = await fs.readFile(`./${FILE_NAME}`);
+  })
+  .catch(async () => {
+    fileContent = JSON.stringify([]);
+    await fs.writeFile(`./${FILE_NAME}`, fileContent);
+  });
+
 app.get(`/offers`, async (req, res) => {
   try {
-    await fs.access(`./${FILE_NAME}`)
-      .then(async () => {
-        const fileContent = await fs.readFile(`./${FILE_NAME}`);
-        const mocks = JSON.parse(fileContent);
-        res.json(mocks);
-      })
-      .catch(async () => {
-        const fileContent = JSON.stringify([]);
-        await fs.writeFile(`./${FILE_NAME}`, fileContent);
-      });
+    const mocks = JSON.parse(fileContent);
+    res.json(mocks);
   } catch (err) {
     res.status(HttpCode.INTERNAL_SERVER_ERROR).send(err);
   }
