@@ -1,6 +1,6 @@
 'use strict';
 
-const FILE_NAME = `mocks.json`;
+const FILE_NAME = `mock.json`;
 const ExitCode = {
   SUCCESS: 0,
   FAILURE: 1
