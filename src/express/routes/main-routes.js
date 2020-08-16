@@ -5,20 +5,20 @@ const {pageContentMain, pageContentSearch} = require(`../mock`);
 
 const mainRouter = new Router();
 
-mainRouter.get(`/`, (req, res) => {
-  res.render(`main`, pageContentMain);
+mainRouter.get(`/`, (request, response) => {
+  response.render(`main`, pageContentMain);
 });
 
-mainRouter.get(`/register`, (req, res) => {
-  res.render(`auth/sign-up`);
+mainRouter.get(`/register`, (request, response) => {
+  response.render(`auth/sign-up`);
 });
 
-mainRouter.get(`/login`, (req, res) => {
-  res.render(`auth/login`);
+mainRouter.get(`/login`, (request, response) => {
+  response.render(`auth/login`);
 });
 
-mainRouter.get(`/search`, (req, res) => {
-  res.render(`search-result`, pageContentSearch);
+mainRouter.get(`/search`, (request, response) => {
+  response.render(`search-result`, pageContentSearch);
 });
 
 module.exports = mainRouter;

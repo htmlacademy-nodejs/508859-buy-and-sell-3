@@ -5,12 +5,12 @@ const {pageContentComments, pageContentMyTickets} = require(`../mock`);
 
 const myRouter = new Router();
 
-myRouter.get(`/`, (req, res) => {
-  res.render(`tickets/my-tickets`, pageContentMyTickets);
+myRouter.get(`/`, (request, response) => {
+  response.render(`tickets/my-tickets`, pageContentMyTickets);
 });
 
-myRouter.get(`/comments`, (req, res) => {
-  res.render(`comments`, pageContentComments);
+myRouter.get(`/comments`, (request, response) => {
+  response.render(`comments`, pageContentComments);
 });
 
 module.exports = myRouter;
