@@ -1,6 +1,10 @@
 'use strict';
 
 const FILE_NAME = `mocks.json`;
+const DEFAULT_PORT = 8080;
+const MAX_ID_LENGTH = 6;
+const API_PREFIX = `/api`;
+
 const ExitCode = {
   SUCCESS: 0,
   FAILURE: 1
@@ -14,10 +18,6 @@ const HttpCode = {
   NOT_FOUND: 404,
   INTERNAL_SERVER_ERROR: 500,
 };
-
-const DEFAULT_PORT = 8080;
-const MAX_ID_LENGTH = 6;
-const API_PREFIX = `/api`;
 
 module.exports = {
   FILE_NAME,
